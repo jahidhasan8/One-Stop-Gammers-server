@@ -29,13 +29,15 @@ async function run(){
   try{
     
     const gamesCollection = client.db('alpha').collection('games')
-
+     
+    // create api for games data
     app.post('/games',async(req,res)=>{
         const game = req.body
         const result = await gamesCollection.insertOne(game)
          res.send(result)
     })
-
+     
+    // get api for games data
     app.get('/games', async(req,res)=>{
         const query={}
         const result=await gamesCollection.find(query).toArray()
